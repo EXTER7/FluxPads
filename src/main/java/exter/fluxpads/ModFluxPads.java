@@ -48,8 +48,7 @@ public class ModFluxPads
     proxy.init();
     GameRegistry.registerTileEntity(TileEntityFluxPad.class, "Flux_Pad");
 
-    ItemStack plate = new ItemStack(Blocks.light_weighted_pressure_plate);
-    
+
     // @formatter:off
     GameRegistry.addRecipe(new ShapedOreRecipe(
         new ItemStack(block,1,BlockFluxPad.FLUXPAD_BASIC),
@@ -58,7 +57,7 @@ public class ModFluxPads
         " G ",
         'L', "ingotIron",
         'G', "gearTin",
-        'P', plate,
+        'P', new ItemStack(Blocks.light_weighted_pressure_plate),
         'R', Items.redstone));
     GameRegistry.addRecipe(new ShapedOreRecipe(
         new ItemStack(block,1,BlockFluxPad.FLUXPAD_HARDENED),
@@ -66,6 +65,7 @@ public class ModFluxPads
         "ICI",
         " G ",
         'I', "ingotInvar",
+        'G', "gearElectrum",
         'C', new ItemStack(block,1,BlockFluxPad.FLUXPAD_BASIC)));
     GameRegistry.addRecipe(new ShapedOreRecipe(
         new ItemStack(block,1,BlockFluxPad.FLUXPAD_REINFORCED),
