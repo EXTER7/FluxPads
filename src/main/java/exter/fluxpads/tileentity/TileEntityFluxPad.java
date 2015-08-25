@@ -31,6 +31,8 @@ public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandl
   public void readFromNBT(NBTTagCompound nbt)
   {
     super.readFromNBT(nbt);
+    energy.setCapacity(nbt.getInteger("Capacity"));
+    energy.setMaxTransfer(nbt.getInteger("Transfer"));
     energy.readFromNBT(nbt);
   }
 
@@ -38,6 +40,8 @@ public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandl
   public void writeToNBT(NBTTagCompound nbt)
   {
     super.writeToNBT(nbt);
+    nbt.setInteger("Capacity",energy.getMaxEnergyStored());
+    nbt.setInteger("Transfer",energy.getMaxExtract());
     energy.writeToNBT(nbt);
   }
 
@@ -98,7 +102,7 @@ public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandl
         IEnergyContainerItem energy_item = (IEnergyContainerItem) stack.getItem();
         used += energy_item.receiveEnergy(stack, supply, false);
       }
-      energy.extractEnergy(used, true);
+      energy.extractEnergy(used, false);
     }
   }
 }

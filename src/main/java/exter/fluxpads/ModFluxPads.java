@@ -7,12 +7,14 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import exter.fluxpads.block.BlockFluxPad;
+import exter.fluxpads.config.FluxPadsConfig;
 import exter.fluxpads.item.ItemBlockMulti;
 import exter.fluxpads.proxy.CommonFluxPadsProxy;
 import exter.fluxpads.tileentity.TileEntityFluxPad;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
 @Mod(
@@ -40,6 +42,9 @@ public class ModFluxPads
     proxy.preInit();
     block = new BlockFluxPad();
     GameRegistry.registerBlock(block, ItemBlockMulti.class, "fluxPad");
+    Configuration conf = new Configuration(event.getSuggestedConfigurationFile());
+    FluxPadsConfig.load(conf);
+    conf.save();
   }
 
   @Mod.EventHandler
@@ -72,7 +77,7 @@ public class ModFluxPads
         " I ",
         "ICI",
         " G ",
-        'I', "ingotElectrum",
+        'I', "ingotLumium",
         'G', "gearSignalum",
         'C', new ItemStack(block,1,BlockFluxPad.FLUXPAD_HARDENED)));
     GameRegistry.addRecipe(new ShapedOreRecipe(
@@ -80,8 +85,8 @@ public class ModFluxPads
         " I ",
         "ICI",
         " G ",
-        'I', "ingotEnderium",
-        'G', "gearLumium",
+        'I', "ingotSilver",
+        'G', "gearEnderium",
         'C', new ItemStack(block,1,BlockFluxPad.FLUXPAD_REINFORCED)));
     // @formatter:on
     }
