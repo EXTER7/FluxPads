@@ -21,12 +21,10 @@ public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandl
   {
     energy = new EnergyStorage(1, 0);
   }
-  
-  public TileEntityFluxPad setStats(int capacity,int transfer)
+
+  public TileEntityFluxPad(int capacity,int transfer)
   {
-    energy.setCapacity(capacity);
-    energy.setMaxTransfer(transfer);
-    return this;
+    energy = new EnergyStorage(capacity, transfer);
   }
 
   @Override

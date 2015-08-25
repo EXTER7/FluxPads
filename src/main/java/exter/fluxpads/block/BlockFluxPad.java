@@ -17,12 +17,21 @@ import java.util.List;
 
 public class BlockFluxPad extends BlockContainer
 {
+  static public final int FLUXPAD_LEADSTONE = 0;
+  static public final int FLUXPAD_HARDENED = 1;
+  static public final int FLUXPAD_REDSTONE = 2;
+  static public final int FLUXPAD_RESONANT = 3;
 
-  public static final int FLUXPAD_LEADSTONE = 0;
-  public static final int FLUXPAD_HARDENED = 1;
-  public static final int FLUXPAD_REDSTONE = 2;
-  public static final int FLUXPAD_RESONANT = 3;
-
+  private IIcon[] icons;
+  
+  static private final String[] ICON_PATHS =
+  {
+    "fluxpads:pad_basic",
+    "fluxpads:pad_hardened",
+    "fluxpads:pad_reinforced",
+    "fluxpads:pad_resonant"
+  };
+  
   public BlockFluxPad()
   {
     super(Material.iron);
@@ -40,14 +49,14 @@ public class BlockFluxPad extends BlockContainer
   @Override
   public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
   {
-    setBlockBounds(0, 0, 0, 1, 0.1875f, 1);
+    setBlockBounds(0, 0, 0, 1, 0.25f, 1);
     super.setBlockBoundsBasedOnState(world, x, y, z);
   }
 
   @Override
   public void setBlockBoundsForItemRender()
   {
-    setBlockBounds(0, 0, 0, 1, 0.1875f, 1);
+    setBlockBounds(0, 0, 0, 1, 0.25f, 1);
     super.setBlockBoundsForItemRender();
   }
 
@@ -87,20 +96,34 @@ public class BlockFluxPad extends BlockContainer
   @Override
   public TileEntity createNewTileEntity(World world, int meta)
   {
-    // TODO
+    switch(meta)
+    {
+      case FLUXPAD_LEADSTONE:
+        return new TileEntityFluxPad(100000,100);
+      case FLUXPAD_HARDENED:
+        return new TileEntityFluxPad(500000,400);
+      case FLUXPAD_REDSTONE:
+        return new TileEntityFluxPad(5000000,2000);
+      case FLUXPAD_RESONANT:
+        return new TileEntityFluxPad(20000000,8000);
+    }
     return null;
   }
 
   @Override
   public void registerBlockIcons(IIconRegister register)
   {
-    // TODO
+    int i;
+    icons = new IIcon[ICON_PATHS.length];
+    for(i = 0; i < ICON_PATHS.length; i++)
+    {
+      icons[i] = register.registerIcon(ICON_PATHS[i]);
+    }
   }
 
   @Override
   public IIcon getIcon(int side, int meta)
   {
-    // TODO
-    return super.getIcon(side, meta);
+    return icons[meta];
   }
 }
