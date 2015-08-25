@@ -1,0 +1,16 @@
+[
+{
+  "modid": "fluxpads",
+  "name": "FluxPads",
+  "description": "Charging pads for RF items.",
+  "version": "1.0.0.0",
+  "mcversion": "1.7.10",
+  "url": "https://github.com/EXTER7/FluxPads",
+  "updateUrl": "",
+  "authorList": ["EXTER"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
