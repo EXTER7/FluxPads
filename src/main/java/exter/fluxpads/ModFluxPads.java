@@ -10,6 +10,10 @@ import exter.fluxpads.block.BlockFluxPad;
 import exter.fluxpads.item.ItemBlockMulti;
 import exter.fluxpads.proxy.CommonFluxPadsProxy;
 import exter.fluxpads.tileentity.TileEntityFluxPad;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 @Mod(
     modid = "fluxpads",
@@ -43,7 +47,44 @@ public class ModFluxPads
   {
     proxy.init();
     GameRegistry.registerTileEntity(TileEntityFluxPad.class, "Flux_Pad");
-  }
+
+    ItemStack plate = new ItemStack(Blocks.light_weighted_pressure_plate);
+    
+    // @formatter:off
+    GameRegistry.addRecipe(new ShapedOreRecipe(
+        new ItemStack(block,1,BlockFluxPad.FLUXPAD_BASIC),
+        " R ",
+        "IPI",
+        " G ",
+        'L', "ingotIron",
+        'G', "gearTin",
+        'P', plate,
+        'R', Items.redstone));
+    GameRegistry.addRecipe(new ShapedOreRecipe(
+        new ItemStack(block,1,BlockFluxPad.FLUXPAD_HARDENED),
+        " I ",
+        "ICI",
+        " G ",
+        'I', "ingotInvar",
+        'C', new ItemStack(block,1,BlockFluxPad.FLUXPAD_BASIC)));
+    GameRegistry.addRecipe(new ShapedOreRecipe(
+        new ItemStack(block,1,BlockFluxPad.FLUXPAD_REINFORCED),
+        " I ",
+        "ICI",
+        " G ",
+        'I', "ingotElectrum",
+        'G', "gearSignalum",
+        'C', new ItemStack(block,1,BlockFluxPad.FLUXPAD_HARDENED)));
+    GameRegistry.addRecipe(new ShapedOreRecipe(
+        new ItemStack(block,1,BlockFluxPad.FLUXPAD_RESONANT),
+        " I ",
+        "ICI",
+        " G ",
+        'I', "ingotEnderium",
+        'G', "gearLumium",
+        'C', new ItemStack(block,1,BlockFluxPad.FLUXPAD_REINFORCED)));
+    // @formatter:on
+    }
 
   @Mod.EventHandler
   public void postInit(FMLPostInitializationEvent event)

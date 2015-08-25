@@ -1,5 +1,7 @@
 package exter.fluxpads.block;
 
+import exter.fluxpads.config.FluxPadsConfig;
+import exter.fluxpads.creativetab.CreativeTabFluxPads;
 import exter.fluxpads.tileentity.TileEntityFluxPad;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -17,9 +19,9 @@ import java.util.List;
 
 public class BlockFluxPad extends BlockContainer
 {
-  static public final int FLUXPAD_LEADSTONE = 0;
+  static public final int FLUXPAD_BASIC = 0;
   static public final int FLUXPAD_HARDENED = 1;
-  static public final int FLUXPAD_REDSTONE = 2;
+  static public final int FLUXPAD_REINFORCED = 2;
   static public final int FLUXPAD_RESONANT = 3;
 
   private IIcon[] icons;
@@ -38,6 +40,7 @@ public class BlockFluxPad extends BlockContainer
     setBlockName("fluxPad");
     setHardness(3.0F);
     setResistance(5.0F);
+    setCreativeTab(CreativeTabFluxPads.tab);
   }
 
   @Override
@@ -98,14 +101,14 @@ public class BlockFluxPad extends BlockContainer
   {
     switch(meta)
     {
-      case FLUXPAD_LEADSTONE:
-        return new TileEntityFluxPad(100000,100);
+      case FLUXPAD_BASIC:
+        return new TileEntityFluxPad(FluxPadsConfig.basic_capacity,FluxPadsConfig.basic_rate);
       case FLUXPAD_HARDENED:
-        return new TileEntityFluxPad(500000,400);
-      case FLUXPAD_REDSTONE:
-        return new TileEntityFluxPad(5000000,2000);
+        return new TileEntityFluxPad(FluxPadsConfig.hardened_capacity,FluxPadsConfig.hardened_rate);
+      case FLUXPAD_REINFORCED:
+        return new TileEntityFluxPad(FluxPadsConfig.reinforced_capacity,FluxPadsConfig.reinforced_rate);
       case FLUXPAD_RESONANT:
-        return new TileEntityFluxPad(20000000,8000);
+        return new TileEntityFluxPad(FluxPadsConfig.resonant_capacity,FluxPadsConfig.resonant_rate);
     }
     return null;
   }
