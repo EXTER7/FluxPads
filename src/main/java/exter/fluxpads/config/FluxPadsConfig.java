@@ -22,13 +22,13 @@ public class FluxPadsConfig
     basic_capacity = config.get("fluxpads", "fluxpad.basic.capacity", 100000).getInt(100000);    
     basic_rate = config.get("fluxpads", "fluxpad.basic.rate", 100).getInt(100); 
 
-    hardened_capacity = config.get("fluxpads", "fluxpad.basic.capacity", 500000).getInt(500000);    
-    hardened_rate = config.get("fluxpads", "fluxpad.basic.rate", 400).getInt(400);
+    hardened_capacity = config.get("fluxpads", "fluxpad.hardened.capacity", 500000).getInt(500000);    
+    hardened_rate = config.get("fluxpads", "fluxpad.hardened.rate", 400).getInt(400);
 
-    reinforced_capacity = config.get("fluxpads", "fluxpad.basic.capacity", 5000000).getInt(5000000);    
-    reinforced_rate = config.get("fluxpads", "fluxpad.basic.rate", 2000).getInt(2000);
+    reinforced_capacity = config.get("fluxpads", "fluxpad.reinforced.capacity", 5000000).getInt(5000000);    
+    reinforced_rate = config.get("fluxpads", "fluxpad.reinforced.rate", 2000).getInt(2000);
 
-    resonant_capacity = config.get("fluxpads", "fluxpad.basic.capacity", 20000000).getInt(20000000);    
-    resonant_rate = config.get("fluxpads", "fluxpad.basic.rate", 8000).getInt(8000);
+    resonant_capacity = config.get("fluxpads", "fluxpad.resonant.capacity", 20000000).getInt(20000000);    
+    resonant_rate = config.get("fluxpads", "fluxpad.resonant.rate", 8000).getInt(8000);
   }
 }
