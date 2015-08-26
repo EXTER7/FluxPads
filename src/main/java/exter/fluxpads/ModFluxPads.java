@@ -23,7 +23,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 @Mod(
     modid = "fluxpads",
     name = "FluxPads",
-    version = "1.0.0.0",
+    version = "1.1.0.0",
     dependencies = 
       "required-after:Forge@[10.13.4.1448,);" +
       "required-after:ThermalFoundation;")
