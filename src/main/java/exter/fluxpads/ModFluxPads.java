@@ -21,9 +21,9 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
     modid = "fluxpads",
     name = "FluxPads",
     version = "1.0.0.0",
-    dependencies =
-      "required-after:ThermalFoundation;" +
-      "after:ThermalExpansion;")
+    dependencies = 
+      "required-after:Forge@[10.13.4.1448,);" +
+      "required-after:ThermalFoundation;")
 public class ModFluxPads
 {
   @Mod.Instance
@@ -53,16 +53,15 @@ public class ModFluxPads
     proxy.init();
     GameRegistry.registerTileEntity(TileEntityFluxPad.class, "Flux_Pad");
 
-
     // @formatter:off
     GameRegistry.addRecipe(new ShapedOreRecipe(
         new ItemStack(block,1,BlockFluxPad.FLUXPAD_BASIC),
         " R ",
         "IPI",
         " G ",
-        'L', "ingotIron",
+        'I', "ingotIron",
         'G', "gearTin",
-        'P', new ItemStack(Blocks.light_weighted_pressure_plate),
+        'P', new ItemStack(Blocks.heavy_weighted_pressure_plate),
         'R', Items.redstone));
     GameRegistry.addRecipe(new ShapedOreRecipe(
         new ItemStack(block,1,BlockFluxPad.FLUXPAD_HARDENED),
