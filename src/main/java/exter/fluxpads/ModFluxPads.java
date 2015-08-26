@@ -1,5 +1,8 @@
 package exter.fluxpads;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -31,6 +34,9 @@ public class ModFluxPads
 
   static public BlockFluxPad block;
   
+  
+  public static Logger log = LogManager.getLogger("fluxpads");
+
   @SidedProxy(
       clientSide = "exter.fluxpads.proxy.ClientFluxPadsProxy",
       serverSide = "exter.fluxpads.proxy.CommonFluxPadsProxy")

@@ -24,16 +24,34 @@ public class BlockFluxPad extends BlockContainer
   static public final int FLUXPAD_REINFORCED = 2;
   static public final int FLUXPAD_RESONANT = 3;
 
-  private IIcon[] icons;
+  private IIcon[] top_icons;
+  private IIcon[] bottom_icons;
+  private IIcon[] sides_icons;
   
-  static private final String[] ICON_PATHS =
+  static private final String[] TOP_ICON_PATHS =
   {
-    "fluxpads:pad_basic",
-    "fluxpads:pad_hardened",
-    "fluxpads:pad_reinforced",
-    "fluxpads:pad_resonant"
+    "fluxpads:pad_basic_top",
+    "fluxpads:pad_hardened_top",
+    "fluxpads:pad_reinforced_top",
+    "fluxpads:pad_resonant_top"
   };
-  
+
+  static private final String[] BOTTOM_ICON_PATHS =
+  {
+    "fluxpads:pad_basic_bottom",
+    "fluxpads:pad_hardened_bottom",
+    "fluxpads:pad_reinforced_bottom",
+    "fluxpads:pad_resonant_bottom"
+  };
+
+  static private final String[] SIDES_ICON_PATHS =
+  {
+    "fluxpads:pad_basic_sides",
+    "fluxpads:pad_hardened_sides",
+    "fluxpads:pad_reinforced_sides",
+    "fluxpads:pad_resonant_sides"
+  };
+
   public BlockFluxPad()
   {
     super(Material.iron);
@@ -52,14 +70,14 @@ public class BlockFluxPad extends BlockContainer
   @Override
   public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
   {
-    setBlockBounds(0, 0, 0, 1, 0.25f, 1);
+    setBlockBounds(0, 0, 0, 1, 0.1875f, 1);
     super.setBlockBoundsBasedOnState(world, x, y, z);
   }
 
   @Override
   public void setBlockBoundsForItemRender()
   {
-    setBlockBounds(0, 0, 0, 1, 0.25f, 1);
+    setBlockBounds(0, 0, 0, 1, 0.1875f, 1);
     super.setBlockBoundsForItemRender();
   }
 
@@ -117,16 +135,34 @@ public class BlockFluxPad extends BlockContainer
   public void registerBlockIcons(IIconRegister register)
   {
     int i;
-    icons = new IIcon[ICON_PATHS.length];
-    for(i = 0; i < ICON_PATHS.length; i++)
+    top_icons = new IIcon[TOP_ICON_PATHS.length];
+    for(i = 0; i < TOP_ICON_PATHS.length; i++)
     {
-      icons[i] = register.registerIcon(ICON_PATHS[i]);
+      top_icons[i] = register.registerIcon(TOP_ICON_PATHS[i]);
+    }
+    bottom_icons = new IIcon[BOTTOM_ICON_PATHS.length];
+    for(i = 0; i < BOTTOM_ICON_PATHS.length; i++)
+    {
+      bottom_icons[i] = register.registerIcon(BOTTOM_ICON_PATHS[i]);
+    }
+    sides_icons = new IIcon[SIDES_ICON_PATHS.length];
+    for(i = 0; i < SIDES_ICON_PATHS.length; i++)
+    {
+      sides_icons[i] = register.registerIcon(SIDES_ICON_PATHS[i]);
     }
   }
 
   @Override
   public IIcon getIcon(int side, int meta)
   {
-    return icons[meta];
+    switch(side)
+    {
+      case 0:
+        return bottom_icons[meta];
+      case 1:
+        return top_icons[meta];
+      default:
+        return sides_icons[meta];
+    }
   }
 }

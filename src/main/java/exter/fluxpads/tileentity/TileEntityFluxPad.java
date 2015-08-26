@@ -12,6 +12,7 @@ import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyContainerItem;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.TileEnergyHandler;
+import exter.fluxpads.ModFluxPads;
 
 public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandler
 {
@@ -88,10 +89,13 @@ public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandl
       ItemStack stack = inventory.getStackInSlot(i);
       if(stack != null && stack.getItem() instanceof IEnergyContainerItem)
       {
-        rf_items.add(stack);
+        IEnergyContainerItem rf_item = (IEnergyContainerItem) stack.getItem();
+        if(rf_item.getEnergyStored(stack) < rf_item.getMaxEnergyStored(stack))
+        {
+          rf_items.add(stack);
+        }
       }
     }
-    
     
     if(rf_items.size() > 0)
     {
@@ -99,8 +103,8 @@ public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandl
       int used = 0;
       for(ItemStack stack : rf_items)
       {
-        IEnergyContainerItem energy_item = (IEnergyContainerItem) stack.getItem();
-        used += energy_item.receiveEnergy(stack, supply, false);
+        IEnergyContainerItem rf_item = (IEnergyContainerItem) stack.getItem();
+        used += rf_item.receiveEnergy(stack, supply, false);
       }
       energy.extractEnergy(used, false);
     }
