@@ -100,7 +100,7 @@ public class BlockFluxPad extends BlockContainer
     {
       EntityPlayer player = (EntityPlayer) entity;
       TileEntityFluxPad te = (TileEntityFluxPad) world.getTileEntity(x, y, z);
-      te.chargeItems(player.inventory);
+      te.chargeInventory((EntityPlayer)player);
     }
   }
 

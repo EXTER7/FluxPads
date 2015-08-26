@@ -1,5 +1,6 @@
 package exter.fluxpads.tileentity;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,15 +9,15 @@ import net.minecraftforge.common.util.ForgeDirection;
 import java.util.ArrayList;
 import java.util.List;
 
+import baubles.api.BaublesApi;
 import cofh.api.energy.EnergyStorage;
 import cofh.api.energy.IEnergyContainerItem;
 import cofh.api.energy.IEnergyHandler;
 import cofh.api.energy.TileEnergyHandler;
-import exter.fluxpads.ModFluxPads;
 
 public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandler
 {
-  protected EnergyStorage energy;
+  private EnergyStorage energy;
 
   public TileEntityFluxPad()
   {
@@ -80,10 +81,12 @@ public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandl
     return energy.getMaxEnergyStored();
   }
   
-  public void chargeItems(IInventory inventory)
+  private void findRFItems(IInventory inventory,List<ItemStack> rf_items)
   {
-    List<ItemStack> rf_items = new ArrayList<ItemStack>();
-
+    if(inventory == null)
+    {
+      return;
+    }
     for(int i = 0; i < inventory.getSizeInventory(); i++)
     {
       ItemStack stack = inventory.getStackInSlot(i);
@@ -96,6 +99,14 @@ public class TileEntityFluxPad extends TileEnergyHandler implements IEnergyHandl
         }
       }
     }
+  }
+
+  public void chargeInventory(EntityPlayer player)
+  {
+    List<ItemStack> rf_items = new ArrayList<ItemStack>();
+
+    findRFItems(player.inventory,rf_items);
+    findRFItems(BaublesApi.getBaubles(player),rf_items);
     
     if(rf_items.size() > 0)
     {
