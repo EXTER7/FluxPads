@@ -64,9 +64,11 @@ public class ModFluxPads
         new ItemStack(block,1,BlockFluxPad.FLUXPAD_BASIC),
         " R ",
         "IPI",
-        " G ",
+        "CET",
         'I', "ingotIron",
-        'G', "gearTin",
+        'T', "gearTin",
+        'C', "gearCopper",
+        'E', new ItemStack(Items.ender_pearl),
         'P', new ItemStack(Blocks.heavy_weighted_pressure_plate),
         'R', Items.redstone));
     GameRegistry.addRecipe(new ShapedOreRecipe(
